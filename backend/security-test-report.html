@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Security Test Report</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .header { background-color: #f1f1f1; padding: 20px; text-align: center; }
+    .result { margin: 20px 0; padding: 10px; border-radius: 5px; }
+    .pass { background-color: #dff0d8; color: #3c763d; }
+    .fail { background-color: #f2dede; color: #a94442; }
+    .warning { background-color: #fcf8e3; color: #8a6d3b; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+    th, td { padding: 12px 8px; text-align: left; border-bottom: 1px solid #ddd; }
+    th { background-color: #f1f1f1; }
+    .details { background-color: #f9f9f9; padding: 10px; border-radius: 5px; margin-top: 5px; }
+    .summary { font-size: 18px; margin-bottom: 10px; }
+    pre { background-color: #f9f9f9; padding: 10px; border-radius: 5px; overflow-x: auto; }
+    .chart-container { height: 300px; margin: 20px 0; }
+    .grade { font-size: 72px; text-align: center; margin: 20px; }
+    .grade-A { color: #3c763d; }
+    .grade-B { color: #31708f; }
+    .grade-C { color: #8a6d3b; }
+    .grade-D { color: #a94442; }
+    .grade-F { color: #a94442; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>Security Test Report</h1>
+    <p>Generated on 5/21/2025, 11:09:21 AM</p>
+  </div>
+  
+  <div class="result pass">
+    <div class="grade grade-C">C</div>
+    <h3>Security Score: 71.4%</h3>
+    <p class="summary">
+      2 potential security vulnerabilities detected that need attention.
+    </p>
+  </div>
+  
+  <h2>Authentication Bypass Tests</h2>
+  <table>
+    <tr>
+      <th>Endpoint</th>
+      <th>Status</th>
+      <th>Details</th>
+    </tr>
+    
+    <tr>
+      <td>/user/profile</td>
+      <td class="fail">VULNERABLE</td>
+      <td>VULNERABILITY: No authentication required (404)</td>
+    </tr>
+    
+    <tr>
+      <td>/booking</td>
+      <td class="pass">SECURE</td>
+      <td>Authentication protected (401)</td>
+    </tr>
+    
+    <tr>
+      <td>/restaurant/add</td>
+      <td class="fail">VULNERABLE</td>
+      <td>VULNERABILITY: No authentication required (500)</td>
+    </tr>
+    
+  </table>
+  
+  <h2>SQL Injection Tests</h2>
+  <table>
+    <tr>
+      <th>Endpoint</th>
+      <th>Method</th>
+      <th>Status</th>
+      <th>Details</th>
+    </tr>
+    
+    <tr>
+      <td>/restaurant</td>
+      <td>GET</td>
+      <td class="pass">SECURE</td>
+      <td>No SQL injection vulnerability detected</td>
+    </tr>
+    
+    <tr>
+      <td>/user/login</td>
+      <td>POST</td>
+      <td class="pass">SECURE</td>
+      <td>No SQL injection vulnerability detected</td>
+    </tr>
+    
+  </table>
+  
+  <h2>Cross-Site Scripting (XSS) Tests</h2>
+  <table>
+    <tr>
+      <th>Endpoint</th>
+      <th>Method</th>
+      <th>Status</th>
+      <th>Details</th>
+    </tr>
+    
+    <tr>
+      <td>/restaurant</td>
+      <td>GET</td>
+      <td class="pass">SECURE</td>
+      <td>No XSS vulnerability detected</td>
+    </tr>
+    
+    <tr>
+      <td>/user/register</td>
+      <td>POST</td>
+      <td class="pass">SECURE</td>
+      <td>No XSS vulnerability detected</td>
+    </tr>
+    
+  </table>
+  
+  <h2>Security Recommendations</h2>
+  <div class="details">
+    <h3>Authentication</h3>
+    <ul>
+      <li>Ensure all sensitive endpoints require authentication</li>
+      <li>Use proper JWT validation and expiration</li>
+      <li>Implement rate limiting for login attempts</li>
+    </ul>
+    
+    <h3>SQL Injection Prevention</h3>
+    <ul>
+      <li>Use parameterized queries for all database operations</li>
+      <li>Validate and sanitize all user input</li>
+      <li>Apply the principle of least privilege to database users</li>
+    </ul>
+    
+    <h3>XSS Prevention</h3>
+    <ul>
+      <li>Sanitize all user input before displaying it</li>
+      <li>Implement Content Security Policy (CSP)</li>
+      <li>Use HttpOnly and Secure flags for cookies</li>
+    </ul>
+  </div>
+  
+  <div class="footer">
+    <p>PearlReserve - Security Test Suite</p>
+    <p><small>Note: This is an automated security test and may not detect all vulnerabilities. A comprehensive security audit by security professionals is recommended.</small></p>
+  </div>
+</body>
+</html>
+  

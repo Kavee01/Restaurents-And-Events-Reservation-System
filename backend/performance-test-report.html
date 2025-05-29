@@ -1,0 +1,163 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Performance Test Report</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .header { background-color: #f1f1f1; padding: 20px; text-align: center; }
+    .result { margin: 20px 0; padding: 10px; border-radius: 5px; }
+    .pass { background-color: #dff0d8; color: #3c763d; }
+    .fail { background-color: #f2dede; color: #a94442; }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+    th, td { padding: 12px 8px; text-align: left; border-bottom: 1px solid #ddd; }
+    th { background-color: #f1f1f1; }
+    .details { background-color: #f9f9f9; padding: 10px; border-radius: 5px; margin-top: 5px; }
+    .summary { font-size: 18px; margin-bottom: 10px; }
+    pre { background-color: #f9f9f9; padding: 10px; border-radius: 5px; overflow-x: auto; }
+    .chart-container { height: 300px; margin: 20px 0; }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="header">
+    <h1>Performance Test Report</h1>
+    <p>Generated on 5/21/2025, 11:05:49 AM</p>
+  </div>
+  
+  <h2>API Response Time Tests</h2>
+  <table>
+    <tr>
+      <th>Endpoint</th>
+      <th>Method</th>
+      <th>Response Time</th>
+      <th>Status</th>
+      <th>Details</th>
+    </tr>
+    
+    <tr>
+      <td>/</td>
+      <td>GET</td>
+      <td>53.91ms</td>
+      <td class="pass">200</td>
+      <td>Response time: 53.91ms</td>
+    </tr>
+    
+    <tr>
+      <td>/restaurant</td>
+      <td>GET</td>
+      <td>81.83ms</td>
+      <td class="pass">200</td>
+      <td>Response time: 81.83ms</td>
+    </tr>
+    
+    <tr>
+      <td>/user/login</td>
+      <td>POST</td>
+      <td>78.20ms</td>
+      <td class="pass">400</td>
+      <td>Response time: 78.20ms</td>
+    </tr>
+    
+  </table>
+  
+  <h2>Load Tests</h2>
+  <table>
+    <tr>
+      <th>Endpoint</th>
+      <th>Requests</th>
+      <th>Total Time</th>
+      <th>Avg Response</th>
+      <th>Min/Max</th>
+      <th>Success Rate</th>
+    </tr>
+    
+    <tr>
+      <td>/</td>
+      <td>20</td>
+      <td>101.86ms</td>
+      <td>64.33ms</td>
+      <td>14.61ms / 92.16ms</td>
+      <td class="pass">100.00% (20/20)</td>
+    </tr>
+    
+    <tr>
+      <td>/restaurant</td>
+      <td>10</td>
+      <td>549.84ms</td>
+      <td>183.74ms</td>
+      <td>78.34ms / 548.25ms</td>
+      <td class="pass">100.00% (10/10)</td>
+    </tr>
+    
+  </table>
+  
+  <div class="chart-container">
+    <canvas id="responseTimeChart"></canvas>
+  </div>
+  
+  <h2>Memory Usage Tests</h2>
+  <table>
+    <tr>
+      <th>Test</th>
+      <th>RSS</th>
+      <th>Heap Total</th>
+      <th>Heap Used</th>
+      <th>Details</th>
+    </tr>
+    
+    <tr>
+      <td>restaurant</td>
+      <td>0.00 MB</td>
+      <td>0.00 MB</td>
+      <td>0.04 MB</td>
+      <td>Memory usage measured for restaurant endpoint: 0.04 MB heap used</td>
+    </tr>
+    
+  </table>
+  
+  <h2>Summary</h2>
+  <div class="result pass">
+    <h3>Overall Performance: PASS</h3>
+    <p class="summary">
+      All performance tests completed successfully. The system meets performance expectations.
+    </p>
+    <p>Tests completed at 5/21/2025, 11:05:49 AM</p>
+  </div>
+  
+  <script>
+    // Create response time chart
+    const ctx = document.getElementById('responseTimeChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ["home","restaurantList","login"],
+        datasets: [{
+          label: 'API Response Time (ms)',
+          data: [53.9113,81.8298,78.19800000000001],
+          backgroundColor: 'rgba(54, 162, 235, 0.5)',
+          borderColor: 'rgba(54, 162, 235, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Response Time (ms)'
+            }
+          }
+        }
+      }
+    });
+  </script>
+  
+  <div class="footer">
+    <p>PearlReserve - Performance Test Suite</p>
+  </div>
+</body>
+</html>
+  
