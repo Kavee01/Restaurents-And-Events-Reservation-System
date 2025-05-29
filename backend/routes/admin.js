@@ -1,23 +1,12 @@
 const express = require('express');
+const adminController = require('../controllers/admin');
+const securityMiddleware = require('../middlewares/security');
 const router = express.Router();
-const { verifyToken } = require('../middleware/auth');
-const { isAdmin } = require('../middleware/auth');
-const {
-  getAllUsers,
-  createUser,
-  updateUser,
-  deleteUser,
-  updateUserStatus,
-} = require('../controllers/adminController');
 
-// All routes require admin authentication
-router.use(verifyToken, isAdmin);
+// Make sure these routes are only accessible by admins
+router.use(securityMiddleware.checkLogin, securityMiddleware.checkIfAdmin);
 
-// User management routes
-router.get('/users', getAllUsers);
-router.post('/users', createUser);
-router.put('/users/:id', updateUser);
-router.delete('/users/:id', deleteUser);
-router.put('/users/:id/status', updateUserStatus);
+// Get dashboard statistics
+router.get('/stats', adminController.getDashboardStats);
 
 module.exports = router; 
